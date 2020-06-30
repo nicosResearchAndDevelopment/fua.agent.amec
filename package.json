@@ -1,7 +1,7 @@
 {
-  "name": "agetn.amec",
+  "name": "agent.amec",
   "version": "1.0.0",
-  "description": "Agetn of authentication mechanism",
+  "description": "Agent of authentication mechanism",
   "main": "./src/agent.amec.js",
   "directories": {
     "doc": "doc"
