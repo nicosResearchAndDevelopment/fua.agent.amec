@@ -1,5 +1,5 @@
 {
-  "name": "agent.amec",
+  "name": "fua.agent.amec",
   "version": "1.0.0",
   "description": "Agent of authentication mechanism",
   "main": "./src/agent.amec.js",
