@@ -21,8 +21,6 @@ module.exports = ({
     if (i !== 1)
         single_mech = undefined;
 
-    //region
-
     function agent_amec(request, mech = undefined, timeout = default_timeout) {
 
         mech = mech || single_mech;
