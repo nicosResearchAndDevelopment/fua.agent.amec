@@ -12,14 +12,6 @@ module.exports = ({
         _mech       = {}
     ; // let
 
-    auth_modules.forEach((am) => {
-        single_mech        = am['mech'];
-        _mech[single_mech] = am;
-        i++;
-    });
-    Object.seal(_mech);
-    if (i !== 1)
-        single_mech = undefined;
 
     function agent_amec(request, mech = undefined, timeout = default_timeout) {
 
@@ -58,6 +50,16 @@ module.exports = ({
             } // try
         }); /// return new P
     } // function agent_amec()
+
+    auth_modules.forEach((am) => {
+        single_mech        = am['mech'];
+        _mech[single_mech] = am;
+        Object.defineProperty(agent_amec, single_mech, {value: am});
+        i++;
+    });
+    Object.seal(_mech);
+    if (i !== 1)
+        single_mech = undefined;
 
     return agent_amec;
 
