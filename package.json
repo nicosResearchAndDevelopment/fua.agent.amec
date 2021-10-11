@@ -1,13 +1,25 @@
 {
-  "name": "fua.agent.amec",
+  "name": "@nrd/fua.agent.amec",
   "version": "1.0.0",
   "description": "Agent of authentication mechanism",
   "main": "./src/agent.amec.js",
-  "directories": {
-    "doc": "doc"
+  "files": [
+    "src/*"
+  ],
+  "dependencies": {
+    "@nrd/fua.core.util": "1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "expect": "^26.6.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
+  },
+  "mocha": {
+    "bail": false,
+    "recursive": false,
+    "spec": "test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +29,6 @@
     "authentication",
     "identity"
   ],
-  "author": "jlangkau@nicos-ag.com",
-  "license": "ISC"
+  "author": "spetrac@nicos-ag.com",
+  "license": "UNLICENSED"
 }
