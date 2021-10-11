@@ -3,6 +3,8 @@ const
 
 function BasicAuth(config) {
 
+    // TODO access space
+
     function basicAuth(headers) {
 
     } // basicAuth
