@@ -6,11 +6,17 @@ const
 function BasicAuth(config) {
     util.assert(config.space, 'BasicAuth : expected space');
 
+    // get the space and create a users map for faster access
     const
         space          = config.space,
         users          = new Map(),
         refreshTimeout = 60 * 60;
 
+    /**
+     * This method fetches the users from the space and puts them into a map.
+     * @returns {Promise<void>}
+     * @private
+     */
     async function _refreshUsers() {
         try {
             const
@@ -33,28 +39,32 @@ function BasicAuth(config) {
         }
     } // _refreshUsers
 
+    // refreshing users with data from the space is asynchronous
     _refreshUsers()
         .then(() => setInterval(_refreshUsers, 1e3 * refreshTimeout))
         .catch(console.error);
 
     function basicAuth(headers) {
+        // get the authorization header field
         const basicAuth = headers['authorization'];
-        // console.log(basicAuth);
+        // check if the authorization is basic
         if (!basicAuth.startsWith('Basic ')) return;
+        // extract username and password
         const [name, password] = Buffer.from(basicAuth.substr(6), 'base64').toString().split(':');
-        // console.log(name, ':', password);
         if (!(name && password)) return;
+        // get the user node from the pre fetched map
         const userNode = users.get(name);
-        // console.log(userNode);
         if (!userNode) return;
+        // get the real user and password
         const auth = {
             id:       userNode['@id'],
             user:     userNode['domain:name'][0]['@value'],
             password: userNode['domain:password'][0]['@value']
         };
-        // console.log(auth);
         // TODO sha256 hashing of password or something like that
+        // compare the password with the real password
         if (auth.password !== password) return;
+        // return an authentication object
         return auth;
     } // basicAuth
 
