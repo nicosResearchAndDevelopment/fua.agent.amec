@@ -25,6 +25,7 @@ function BasicAuth(config) {
         if (auth.password !== password) return;
         // return an authentication object
         return auth;
+        // return userNode;
     } // basicAuth
 
     return basicAuth;
