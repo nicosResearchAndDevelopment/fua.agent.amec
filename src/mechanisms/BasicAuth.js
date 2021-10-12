@@ -24,11 +24,26 @@ function BasicAuth(config) {
         // compare the password with the real password
         if (auth.password !== password) return;
         // return an authentication object
-        return auth;
+        //return auth;
+        return {
+            id:   auth.id,
+            type: "BasicAuthUser", // TODO: make it better!!!
+            user: auth.user
+        };
         // return userNode;
     } // basicAuth
+
+    Object.defineProperties(basicAuth, {
+        type:                  {value: "BasicAuth", enumerable: true},
+        /** skos */ prefLabel: {value: "BasicAuth", enumerable: true}
+    }); // Object.defineProperties(BasicAuth
 
     return basicAuth;
 } // BasicAuth
 
+Object.defineProperties(BasicAuth, {
+    /** skos */ prefLabel: {value: "BasicAuth", enumerable: true}
+}); // Object.defineProperties(BasicAuth
+
+Object.freeze(BasicAuth);
 module.exports = BasicAuth;
