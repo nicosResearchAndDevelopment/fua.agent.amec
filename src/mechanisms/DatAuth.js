@@ -1,21 +1,30 @@
 const
-    util = require('../agent.amec.util.js');
+    util          = require('../agent.amec.util.js'),
+    {decode}      = require('jose/util/base64url'),
+    decodePayload = (jwt) => JSON.parse(decode(jwt.split('.')[0]));
 
 function DatAuth(config) {
-    const domain = config.domain;
-    util.assert(domain, 'DatAuth : expected domain');
+    const connector = config.domain;
+    util.assert(connector, 'DatAuth : expected connector');
 
     async function datAuth(headers) {
         // get the authorization header field
         const authorization = headers['authorization'];
         // check if the authorization is jwt (bearer)
         if (!authorization.startsWith('Bearer ')) return;
-        // TODO find the right daps client
-        // TODO validate the dat with the client
-        // TODO return an authentication object
+        const token         = authorization.substr(7);
+        // find the right daps client
+        const {iss: issuer} = decodePayload(token);
+        if (!issuer) return;
+        const client = connector.getClient({daps: issuer});
+        if (!client) return;
+        // validate the dat with the client
+        const payload = await client.validateDat(token);
+        // return an authentication object
         return {
-            type:   datAuth.type,
-            userId: 'TODO'
+            type:       datAuth.type,
+            userId:     payload.sub,
+            datPayload: payload
         };
     } // datAuth
 
