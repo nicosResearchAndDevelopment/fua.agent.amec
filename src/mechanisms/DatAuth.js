@@ -4,13 +4,14 @@ const
     decodePayload = (jwt) => JSON.parse(decode(jwt.split('.')[0]));
 
 function DatAuth(config) {
-    const connector = config.domain;
+    const connector = config.connector;
     util.assert(connector, 'DatAuth : expected connector');
 
     async function datAuth(headers) {
         // get the authorization header field
         const authorization = headers['authorization'];
         // check if the authorization is jwt (bearer)
+        if (!authorization) return;
         if (!authorization.startsWith('Bearer ')) return;
         const token         = authorization.substr(7);
         // find the right daps client
@@ -34,7 +35,7 @@ function DatAuth(config) {
     return Object.freeze(datAuth);
 } // DatAuth
 
-DatAuth.id        = 'DatAuth';
-DatAuth.prefLabel = DatAuth.id; // skos
+DatAuth.id        = 'https://www.nicos-rd.com/fua/amec/DatAuth/';
+DatAuth.prefLabel = 'DatAuth'; // skos
 
 module.exports = Object.freeze(DatAuth);
