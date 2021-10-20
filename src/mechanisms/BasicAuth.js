@@ -19,15 +19,15 @@ function BasicAuth(config) {
         if (!userNode) return;
         // get the real user and password
         const
-            userName     = userNode['dom:name']?.[0]?.['@value'],
-            userPassword = userNode['dom:password']?.[0]?.['@value'];
+            userName     = userNode.getLiteral('dom:name').value,
+            userPassword     = userNode.getLiteral('dom:password').value;
         // TODO bcrypt hashing of password
         // compare the password with the real password
         if (userPassword !== password) return;
         // return an authentication object
         return {
             type:     basicAuth.type,
-            userId:   userNode['@id'],
+            userId:   userNode.id,
             userName: userName
         };
     } // basicAuth
