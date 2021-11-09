@@ -1,7 +1,8 @@
 const
-    util          = require('../agent.amec.util.js'),
-    {decode}      = require('jose/util/base64url'),
-    decodePayload = (jwt) => JSON.parse(decode(jwt.split('.')[0]));
+    util                  = require('../agent.amec.util.js'),
+    // {decode}      = require('jose/util/base64url'), // jose@3.x
+    {base64url: {decode}} = require('jose'), // jose@4.x
+    decodePayload         = (jwt) => JSON.parse(decode(jwt.split('.')[0]));
 
 function DatAuth(config) {
     const connector = config.connector;
