@@ -11,6 +11,9 @@
     },
     "./DatAuth": {
       "require": "./src/mechanisms/DatAuth.js"
+    },
+    "./LoginAuth": {
+      "require": "./src/mechanisms/LoginAuth.js"
     }
   },
   "files": [

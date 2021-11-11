@@ -2,18 +2,18 @@ const
     util   = require('../agent.amec.util.js'),
     bcrypt = require('bcrypt');
 
-// SEE https://datatracker.ietf.org/doc/html/rfc7617
-function BasicAuth(config) {
-    const domain = config.domain;
-    util.assert(domain, 'BasicAuth : expected domain');
+function LoginAuth(config) {
+    const
+        domain        = config.domain,
+        nameField     = 'username',
+        passwordField = 'password';
+    util.assert(domain, 'LoginAuth : expected domain');
 
-    async function basicAuth(headers) {
-        // get the authorization header field
-        const authorization = headers['authorization'];
-        // check if the authorization is basic
-        if (!authorization.startsWith('Basic ')) return;
+    async function loginAuth(headers) {
         // extract username and password
-        const [name, password] = Buffer.from(authorization.substr(6), 'base64').toString().split(':');
+        const
+            name     = headers[nameField],
+            password = headers[passwordField];
         if (!(name && password)) return;
         // get the user node from the domain
         const userNode = await domain.users.getByAttr('dom:name', name);
@@ -27,19 +27,19 @@ function BasicAuth(config) {
         if (!passValid) return;
         // return an authentication object
         return {
-            type:     basicAuth.type,
+            type:     loginAuth.type,
             userId:   userNode.id,
             userName: userName
         };
-    } // basicAuth
+    } // loginAuth
 
-    basicAuth.type      = BasicAuth.id;
-    basicAuth.prefLabel = BasicAuth.prefLabel; // skos
+    loginAuth.type      = LoginAuth.id;
+    loginAuth.prefLabel = LoginAuth.prefLabel; // skos
 
-    return Object.freeze(basicAuth);
-} // BasicAuth
+    return Object.freeze(loginAuth);
+} // LoginAuth
 
-BasicAuth.id        = 'BasicAuth';
-BasicAuth.prefLabel = BasicAuth.id; // skos
+LoginAuth.id        = 'LoginAuth';
+LoginAuth.prefLabel = LoginAuth.id; // skos
 
-module.exports = Object.freeze(BasicAuth);
+module.exports = Object.freeze(LoginAuth);
