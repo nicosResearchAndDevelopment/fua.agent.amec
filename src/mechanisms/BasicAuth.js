@@ -11,6 +11,7 @@ function BasicAuth(config) {
         // get the authorization header field
         const authorization = headers['authorization'];
         // check if the authorization is basic
+        if (!authorization) return;
         if (!authorization.startsWith('Basic ')) return;
         // extract username and password
         const [name, password] = Buffer.from(authorization.substr(6), 'base64').toString().split(':');
