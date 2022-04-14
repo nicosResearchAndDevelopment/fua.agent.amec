@@ -17,7 +17,8 @@ function BasicAuth(config) {
         const [name, password] = Buffer.from(authorization.substr(6), 'base64').toString().split(':');
         if (!(name && password)) return;
         // get the user node from the domain
-        const userNode = await domain.users.getByAttr('dom:name', name);
+        // TODO replace old domain method (users.getByAttr) to only use the new domain method (getUserByAttribute)
+        const userNode = await (domain.users ? domain.users.getByAttr('dom:name', name) : domain.getUserByAttribute('dom:name', name));
         if (!userNode) return;
         // get the real user and password and compare with submitted password
         const
