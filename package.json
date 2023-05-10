@@ -1,6 +1,6 @@
 {
   "name": "@nrd/fua.agent.amec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent of authentication mechanism",
   "exports": {
     ".": {
