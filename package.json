@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@nrd/fua.core.util": "^1.0.0",
-    "bcrypt": "^5.0.1"
+    "bcrypt": "5.0.1"
   },
   "devDependencies": {
     "mocha": "^8.2.1",
