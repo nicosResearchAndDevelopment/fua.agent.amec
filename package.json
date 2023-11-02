@@ -14,13 +14,19 @@
     },
     "./LoginAuth": {
       "require": "./src/mechanisms/LoginAuth.js"
+    },
+    "./v2": {
+      "require": "./v2/amec.js"
     }
   },
   "files": [
-    "src/*"
+    "src/*",
+    "v2/*"
   ],
   "dependencies": {
     "@nrd/fua.core.util": "^1.0.0",
+    "@nrd/fua.core.assert": "^1.0.0",
+    "@nrd/fua.core.is": "^1.0.0",
     "bcrypt": "5.0.1"
   },
   "devDependencies": {
