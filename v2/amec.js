@@ -7,12 +7,40 @@ assert(!global[identifier], 'unable to load a second uncached version of the sin
 Object.defineProperty(global, identifier, {value: Amec, configurable: false, writable: false, enumerable: false});
 
 const
-    _Amec        = Object.create(null),
-    EventEmitter = require('events'),
-    is           = require('@nrd/fua.core.is');
+    _Amec             = Object.create(null),
+    EventEmitter      = require('events'),
+    is                = require('@nrd/fua.core.is'),
+    InitializeOptions = {
+        mechanisms: is.validator.optional(is.array)
+    };
 
 _Amec.authenticators = new Map();
 _Amec.emitter        = new EventEmitter();
+
+Amec.initialize = async function (options = {}) {
+    assert.object(options, InitializeOptions);
+    assert(!_Amec.initialized, 'already initialized');
+    _Amec.initialized = true;
+
+    if (options.mechanisms) for (let authConfig of options.mechanisms) {
+        const authenticator = Amec.loadAuthenticator(authConfig);
+        Amec.registerMechanism(authConfig.authType, authenticator);
+    }
+
+    return Amec;
+};
+
+Amec.loadAuthenticator = function (authConfig) {
+    assert.object(authConfig, {authType: is.string});
+    switch (authConfig.authType) {
+        case 'BasicAuth':
+            return require('./mech/BasicAuth.js')(authConfig);
+        case 'DatAuth':
+            return require('./mech/DatAuth.js')(authConfig);
+        default:
+            throw new Error('unknown mechanism ' + authConfig.authType);
+    }
+};
 
 /**
  * @param {string} mechanism
