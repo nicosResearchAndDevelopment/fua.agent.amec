@@ -1,6 +1,6 @@
 const
     assert = require('@nrd/fua.core.assert'),
-    Domain = require('@nrd/fua.agent.domain'),
+    Domain = require('@nrd/fua.agent.domain/v2'),
     Helmut = require('@nrd/fua.agent.helmut'),
     bcrypt = require('bcrypt');
 
@@ -31,7 +31,7 @@ function BasicAuth(config = {}) {
         if (!authorization) return null;
         if (!authorization.startsWith(authPrefix)) return null;
         // extract username and password
-        const [name, password] = Helmut.base64(authorization.substring(authPrefix.length)).toString().split(':');
+        const [name, password] = Helmut.base64(authorization.substring(authPrefix.length)).toUtf8().split(':');
         if (!(name && password)) return null;
         // get the user node from the Domain
         const userNode = await Domain.getUserByAttribute(usernameAttr, name);
