@@ -1,6 +1,6 @@
 const
     assert = require('@nrd/fua.core.assert'),
-    Domain = require('@nrd/fua.agent.domain/v2'),
+    Domain = require('@nrd/fua.agent.domain'),
     Helmut = require('@nrd/fua.agent.helmut'),
     bcrypt = require('bcrypt');
 

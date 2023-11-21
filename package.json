@@ -1,32 +1,26 @@
 {
   "name": "@nrd/fua.agent.amec",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Agent of authentication mechanism",
   "exports": {
     ".": {
-      "require": "./src/agent.amec.js"
+      "require": "./src/amec.js"
     },
     "./BasicAuth": {
-      "require": "./src/mechanisms/BasicAuth.js"
+      "require": "./src/mech/BasicAuth.js"
     },
     "./DatAuth": {
-      "require": "./src/mechanisms/DatAuth.js"
-    },
-    "./LoginAuth": {
-      "require": "./src/mechanisms/LoginAuth.js"
-    },
-    "./v2": {
-      "require": "./v2/amec.js"
+      "require": "./src/mech/DatAuth.js"
     }
   },
   "files": [
-    "src/*",
-    "v2/*"
+    "src/*"
   ],
   "dependencies": {
-    "@nrd/fua.core.util": "^1.0.0",
     "@nrd/fua.core.assert": "^1.0.0",
-    "@nrd/fua.core.is": "^1.0.0",
+    "@nrd/fua.core.is": "^1.0.4",
+    "@nrd/fua.agent.domain": "^2.0.0",
+    "@nrd/fua.agent.helmut": "^2.1.0",
     "bcrypt": "5.0.1"
   },
   "devDependencies": {

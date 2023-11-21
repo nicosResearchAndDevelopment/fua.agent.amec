@@ -3,8 +3,8 @@ const
     expect                   = require('expect'),
     path                     = require('path'),
     util                     = require('@nrd/fua.core.util'),
-    AgentAmec                = require('../src/agent.amec.js'),
-    BasicAuth                = require('../src/mechanisms/BasicAuth.js'),
+    AgentAmec                = require('./agent.amec.js'),
+    BasicAuth                = require('./mechanisms/BasicAuth.js'),
     {Dataset, DataFactory}   = require('@nrd/fua.module.persistence'),
     Space                    = require(path.join(util.FUA_JS_LIB, 'module.space/next/module.space.js'));
 
