@@ -1,5 +1,6 @@
 const
     assert = require('@nrd/fua.core.assert'),
+    async  = require('@nrd/fua.core.async'),
     Domain = require('@nrd/fua.agent.domain'),
     Helmut = require('@nrd/fua.agent.helmut'),
     bcrypt = require('bcrypt');
@@ -43,11 +44,17 @@ function BasicAuth(config = {}) {
             // passValid    = (password === userPassword),
             passValid    = await bcrypt.compare(password, userPassword);
         if (!passValid) return null;
+        // retrieve groups
+        const
+            /** @type {Array<fua.module.space.Node>} */
+            allGroups = await Domain.getAllGroups(),
+            memberOf  = await async.filter(allGroups, groupNode => Domain.groupHasMember(groupNode, userNode));
         // return an authentication object
         return {
             type:     authType,
             userId:   userNode.id,
-            userName: userName
+            userName: userName,
+            memberOf: memberOf.map(groupNode => groupNode.id)
         };
     }
 
