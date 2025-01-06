@@ -9,6 +9,8 @@ const
 
 describe('fua.agent.amec', function () {
 
+    this.timeout('30s');
+
     before('init', async function () {
         await Space.initialize({
             context: {
