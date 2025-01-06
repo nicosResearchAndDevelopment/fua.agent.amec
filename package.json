@@ -1,5 +1,5 @@
 {
-  "name": "@nrd/fua.agent.amec",
+  "name": "@fua/agent.amec",
   "version": "2.0.1",
   "description": "Agent of authentication mechanism",
   "exports": {
@@ -17,16 +17,17 @@
     "src/*"
   ],
   "dependencies": {
-    "@nrd/fua.core.assert": "^1.0.0",
-    "@nrd/fua.core.async": "^1.0.0",
-    "@nrd/fua.core.is": "^1.0.4",
-    "@nrd/fua.agent.domain": "^2.0.0",
-    "@nrd/fua.agent.helmut": "^2.1.0",
-    "bcrypt": "5.0.1"
+    "@fua/core.assert": "^1.0.0",
+    "@fua/core.async": "^1.0.0",
+    "@fua/core.is": "^1.0.4",
+    "@fua/agent.domain": "^2.0.0",
+    "@fua/agent.helmut": "^2.1.0",
+    "bcrypt": "^5.0.1"
   },
   "devDependencies": {
-    "mocha": "^8.2.1",
-    "expect": "^26.6.2"
+    "expect": "26.x",
+    "mocha": "10.x",
+    "@fua/module.persistence.filesystem": "^1.0.0"
   },
   "scripts": {
     "test": "mocha"
@@ -38,12 +39,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git02.int.nsc.ag:10022/research/fua/agent/amec.git"
+    "url": "ssh://git@github.com:nicosResearchAndDevelopment/fua.agent.amec.git"
   },
   "keywords": [
     "authentication",
     "identity"
   ],
-  "author": "spetrac@nicos-ag.com",
-  "license": "UNLICENSED"
+  "author": "Simon Petrac <pfoerdie@gmail.com>",
+  "license": "MIT"
 }

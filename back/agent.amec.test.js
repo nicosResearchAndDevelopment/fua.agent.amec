@@ -2,10 +2,10 @@ const
     {describe, test, before} = require('mocha'),
     expect                   = require('expect'),
     path                     = require('path'),
-    util                     = require('@nrd/fua.core.util'),
+    util                     = require('@fua/core.util'),
     AgentAmec                = require('./agent.amec.js'),
     BasicAuth                = require('./mechanisms/BasicAuth.js'),
-    {Dataset, DataFactory}   = require('@nrd/fua.module.persistence'),
+    {Dataset, DataFactory}   = require('@fua/module.persistence'),
     Space                    = require(path.join(util.FUA_JS_LIB, 'module.space/next/module.space.js'));
 
 describe('agent.amec', function () {

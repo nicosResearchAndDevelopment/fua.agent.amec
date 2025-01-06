@@ -1,9 +1,9 @@
 const
-    assert        = require('@nrd/fua.core.assert'),
-    is            = require('@nrd/fua.core.is'),
+    assert        = require('@fua/core.assert'),
+    is            = require('@fua/core.is'),
     // {decode}      = require('jose/util/base64url'), // jose@3.x
     // {base64url: {decode}} = require('jose'), // jose@4.x
-    Helmut        = require('@nrd/fua.agent.helmut'),
+    Helmut        = require('@fua/agent.helmut'),
     // NOTE maybe jwt.split('.')[0] is the jwt header, then better use jwt.split('.')[1] for the payload instead
     decodePayload = (jwt) => Helmut.base64url(jwt.split('.')[0]).toJSON();
 

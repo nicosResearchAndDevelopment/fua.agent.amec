@@ -1,4 +1,4 @@
-# @nrd/fua.agent.amec
+# @fua/agent.amec
 
 - [MDN, WWW-Authenticate](https://developer.mozilla.org/de/docs/Web/HTTP/Headers/WWW-Authenticate)
 - [IANA](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml)

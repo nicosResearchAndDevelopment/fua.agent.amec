@@ -2,9 +2,9 @@ const
     {describe, test, before} = require('mocha'),
     expect                   = require('expect'),
     path                     = require('path'),
-    Helmut                   = require('@nrd/fua.agent.helmut'),
-    Space                    = require('@nrd/fua.agent.space'),
-    Domain                   = require('@nrd/fua.agent.domain'),
+    Helmut                   = require('@fua/agent.helmut'),
+    Space                    = require('@fua/agent.space'),
+    Domain                   = require('@fua/agent.domain'),
     Amec                     = require('../src/amec.js');
 
 describe('fua.agent.amec', function () {

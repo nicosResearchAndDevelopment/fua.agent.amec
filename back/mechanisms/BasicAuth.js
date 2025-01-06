@@ -1,6 +1,6 @@
 const
     util        = require('../agent.amec.util.js'),
-    DomainAgent = require('@nrd/fua.agent.domain'),
+    DomainAgent = require('@fua/agent.domain'),
     bcrypt      = require('bcrypt');
 
 // SEE https://datatracker.ietf.org/doc/html/rfc7617

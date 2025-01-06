@@ -1,7 +1,7 @@
 const
     Amec               = exports,
     {name: identifier} = require('../package.json'),
-    assert             = require('@nrd/fua.core.assert');
+    assert             = require('@fua/core.assert');
 
 assert(!global[identifier], 'unable to load a second uncached version of the singleton ' + identifier);
 Object.defineProperty(global, identifier, {value: Amec, configurable: false, writable: false, enumerable: false});
@@ -9,7 +9,7 @@ Object.defineProperty(global, identifier, {value: Amec, configurable: false, wri
 const
     _Amec             = Object.create(null),
     EventEmitter      = require('events'),
-    is                = require('@nrd/fua.core.is'),
+    is                = require('@fua/core.is'),
     InitializeOptions = {
         mechanisms: is.validator.optional(is.array)
     };

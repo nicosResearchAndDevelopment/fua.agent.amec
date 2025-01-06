@@ -1,8 +1,8 @@
 const
-    assert = require('@nrd/fua.core.assert'),
-    async  = require('@nrd/fua.core.async'),
-    Domain = require('@nrd/fua.agent.domain'),
-    Helmut = require('@nrd/fua.agent.helmut'),
+    assert = require('@fua/core.assert'),
+    async  = require('@fua/core.async'),
+    Domain = require('@fua/agent.domain'),
+    Helmut = require('@fua/agent.helmut'),
     bcrypt = require('bcrypt');
 
 /**
